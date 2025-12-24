@@ -8,6 +8,9 @@ import ForgotPassword from "./auth/ForgotPassword";
 
 import AppLayout from "./layouts/AppLayout";
 import Profile from "./pages/Profile";
+import Users from "./admin/Users";
+import Roles from "./admin/Roles";
+import AuditLogs from "./admin/AuditLogs";
 
 export default function App() {
   return (
@@ -21,6 +24,10 @@ export default function App() {
           {/* PRIVATE */}
           <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
             <Route index element={<Profile />} />
+
+            <Route path="admin/users" element={<Users />} />
+            <Route path="admin/roles" element={<Roles />} />
+            <Route path="admin/audit" element={<AuditLogs />} />
           </Route>
         </Routes>
       </AuthProvider>
