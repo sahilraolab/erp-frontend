@@ -10,21 +10,34 @@ export default function AuditLogs() {
 
 
   return (
-    <div>
-      <h1 className="text-xl font-semibold mb-4">Audit Logs</h1>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold text-gray-900">Audit Logs</h1>
+        <p className="text-gray-600 text-sm mt-1">Track system activities and user actions</p>
+      </div>
 
-      <ul className="space-y-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 divide-y divide-gray-200">
         {logs.map(log => (
-          <li key={log.id} className="bg-white p-3 rounded shadow text-sm">
-            <b>{log.user?.name || "System"}</b>{" "}
-            {log.action.replace("_", " ").toLowerCase()}
-            {" "}({log.module})
-            <span className="text-gray-500 text-xs">
-              {new Date(log.createdAt).toLocaleString()}
-            </span>
-          </li>
+          <div key={log.id} className="p-5 hover:bg-gray-50 transition">
+            <div className="flex justify-between items-start">
+              <div className="flex-1">
+                <div className="text-sm">
+                  <span className="font-semibold text-gray-900">{log.user?.name || "System"}</span>
+                  <span className="text-gray-600 mx-2">
+                    {log.action.replace("_", " ").toLowerCase()}
+                  </span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700">
+                    {log.module}
+                  </span>
+                </div>
+              </div>
+              <div className="text-xs text-gray-500 whitespace-nowrap ml-4">
+                {new Date(log.createdAt).toLocaleString()}
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

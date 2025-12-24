@@ -6,10 +6,13 @@ export default function Sidebar() {
   const { can } = useAuth();
 
   return (
-    <aside className="w-64 bg-gray-900 text-gray-200 min-h-screen px-4 py-6">
-      <div className="text-lg font-semibold mb-6">ERP</div>
+    <aside className="w-64 bg-gray-900 text-gray-100 min-h-screen border-r border-gray-800">
+      <div className="px-6 py-6 border-b border-gray-800">
+        <div className="text-xl font-bold text-white">ERP System</div>
+        <div className="text-xs text-gray-400 mt-1">Management Portal</div>
+      </div>
 
-      <nav className="space-y-4">
+      <nav className="px-4 py-6 space-y-2">
         {SIDEBAR_ITEMS.map((item) => {
           if (item.permission && !can(item.permission)) return null;
 
@@ -19,8 +22,10 @@ export default function Sidebar() {
                 key={item.label}
                 to={item.path}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded ${
-                    isActive ? "bg-gray-700" : "hover:bg-gray-800"
+                  `block px-4 py-2.5 rounded-lg font-medium transition-all ${
+                    isActive
+                      ? "bg-gray-800 text-white shadow-lg"
+                      : "text-gray-300 hover:bg-gray-800 hover:text-white"
                   }`
                 }
               >
@@ -30,21 +35,21 @@ export default function Sidebar() {
           }
 
           return (
-            <div key={item.label}>
-              <div className="text-xs uppercase text-gray-400 mb-1">
+            <div key={item.label} className="pt-4">
+              <div className="text-xs uppercase font-semibold text-gray-500 px-4 mb-2 tracking-wider">
                 {item.label}
               </div>
-              <div className="space-y-1 ml-2">
+              <div className="space-y-1">
                 {item.children.map((child) =>
                   can(child.permission) ? (
                     <NavLink
                       key={child.label}
                       to={child.path}
                       className={({ isActive }) =>
-                        `block px-3 py-2 rounded text-sm ${
+                        `block px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
                           isActive
-                            ? "bg-gray-700"
-                            : "hover:bg-gray-800"
+                            ? "bg-gray-800 text-white shadow-lg"
+                            : "text-gray-300 hover:bg-gray-800 hover:text-white"
                         }`
                       }
                     >
