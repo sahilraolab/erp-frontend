@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const { login } = useAuth();
@@ -44,6 +45,10 @@ export default function Login() {
         <button className="w-full bg-indigo-600 text-white py-2">
           Login
         </button>
+
+        <Link to="/forgot-password" className="text-sm text-gray-600">
+          Forgot password?
+        </Link>
       </form>
     </div>
   );
